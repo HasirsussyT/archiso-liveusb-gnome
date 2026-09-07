@@ -1,0 +1,14 @@
+{
+  "name": "arch-builder",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "apt-get update && apt-get install -y git curl wget sudo",
+  "postCreateCommand": "echo ready"
+}
