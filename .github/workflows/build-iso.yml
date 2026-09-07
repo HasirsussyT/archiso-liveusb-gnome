@@ -1,0 +1,34 @@
+name: build-iso
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build ISO in Arch Linux container
+        run: |
+          docker run --privileged --security-opt seccomp=unconfined \
+            -v "$PWD":/build \
+            archlinux:latest /bin/bash -c "
+              set -e
+              pacman-key --init
+              pacman-key --populate archlinux
+              pacman -Syu --noconfirm
+              pacman -S --noconfirm archiso
+              cd /build
+              mkarchiso -v -o /build/iso .
+            "
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: archiso-liveusb-gnome
+          path: iso/*.iso
+          if-no-files-found: error
