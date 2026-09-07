@@ -6,7 +6,7 @@ b43-fwcutter
 base
 bind-tools
 brltty
-broadcom-wl
+# broadcom-wl
 btrfs-progs
 clonezilla
 cloud-init
@@ -108,7 +108,7 @@ usbmuxd
 usbutils
 vim
 # Installing virtualbox-guest-utils with X11 support
-virtualbox-guest-utils #-nox
+# virtualbox-guest-utils #-nox
 vpnc
 wireless-regdb
 wireless_tools
@@ -126,12 +126,12 @@ gnome-control-center
 gnome-settings-daemon
 firefox
 nautilus
-xorg-drivers
+
 networkmanager
 gnome-text-editor
 eog
 nano
-xorg # VMSVGA support (Virtualbox, VMware)
+ # VMSVGA support (Virtualbox, VMware)
 # CJK Support
 noto-fonts
 noto-fonts-cjk
